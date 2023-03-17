@@ -12,40 +12,39 @@
             <div class="score">
                 <h1>Jogador</h1>
                 <div class="life-bar">
-                    <div class="life">
-                    </div>
+                    <div class="life" :style="{ width: vidaPlayer + '%'}" :class="{'life-danger': lifeDangerPlayer, 'life': !lifeDangerPlayer}"></div>
                 </div>
                 <div><p>{{vidaPlayer}}/100</p></div>
             </div>
             <div class="score">
                 <h1>Monstro</h1>
                 <div class="life-bar">
-                    <div class="life"></div>
+                    <div class="life" :style="{ width: vidaMonstro + '%'}" :class="{'life-danger': lifeDangerMonstro, 'life': !lifeDangerMonstro}"></div>
                 </div>
                 <div><p>{{vidaMonstro}}/100</p></div>
             </div>
         </div>
-        <div class="panel result">
-            <div class="win">Você ganhou!!! :)</div>
-            <div class="lose">Você perdeu! :(</div>
+        <div class="panel result" v-if="!jogoRodando">
+            
+            <div class="win" v-if="ganhou">Você ganhou!!! :)</div>
+            <div class="lose" v-else>Você perdeu! :(</div>
         </div>
         <div class="panel buttons">
-            <template>
+            <template v-if="jogoRodando">
                 <button class="btn attack" @click="atacar()">Ataque</button>
                 <button class="btn especial-attack" @click="ataque_especial()">Ataque Especial</button>
-                <button class="btn heal" @click="danoMonstro()">Curar</button>
-                <button class="btn give-up">Desistir</button>
+                <button class="btn heal" @click="curar()">Curar</button>
+                <button class="btn give-up" @click="jogoRodando = false, ganhou = false">Desistir</button>
             </template>
-            <button class="btn new-game">Iniciar Jogo</button>
+            <button class="btn new-game" v-else @click="resetaComponentes()">Iniciar Jogo</button>
         </div>
         <div class="panel logs">
             <ul>
-                <li>
-                    <span>O monstro deu {{this.danoDoMonstro}} de dano</span>
+                <li class="monster">
+                    <span >O monstro deu {{this.danoDoMonstro}} de dano</span>
                 </li>
-                <li>
-                    <span>O player deu {{this.danoPlayer}} de dano</span>
-                
+                <li class="player">
+                    <span >O player deu {{this.danoPlayer}} de dano</span>
                 </li>
             </ul>
         </div>
