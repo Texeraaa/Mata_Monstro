@@ -79,6 +79,11 @@ new Vue({
                 this.jogoRodando = true
                 this.lifeDangerMonstro = false
                 this.lifeDangerPlayer = false
+                this.listaLogs = [
+                    [],   
+                    [],   
+                    [],   
+                ]
             }
         },
         computed:{
