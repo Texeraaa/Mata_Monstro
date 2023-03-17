@@ -8,42 +8,37 @@ new Vue({
             logs: [],
         },
         methods:{
+            danoMonstro(){
+                const danoMonstro = Math.floor(Math.random() * 13 );
+                this.danoDoMonstro = danoMonstro
+                console.log("O Monstro deu ", danoMonstro, " De dano")
+                this.vidaPlayer -= danoMonstro;
+                this.logs.push(danoMonstro)
+                return
+            },
             curar(){
-                
+
             },
             ataque_especial(){
                 const danoPlayer = Math.floor(Math.random() * (21 - 15) + 15)
-                const danoMonstro = Math.floor(Math.random() * 13 );
-
-                this.danoMonstro = danoMonstro
-                this.danoPlayer = danoPlayer
-                
-                // console.log("O Player deu ", danoPlayer, " De dano")
-                // console.log("O Monstro deu ", danoMonstro, " De dano")
-                
+                this.danoPlayer = danoPlayer  
                 this.vidaMonstro -= danoPlayer;
-                this.vidaPlayer -= danoMonstro;
-                
-                this.logs.push(danoMonstro)
+                // console.log("O Player deu ", danoPlayer, " De dano")
+                this.danoMonstro()
                 this.logs.push(danoPlayer)
 
             },
             atacar(){
+                this.danoMonstro()
                 const danoPlayer = Math.floor(Math.random() * 9)
-                const danoMonstro = Math.floor(Math.random() * 13 );
-                const danoPlayerEspecial = Math.floor(Math.random() * 21)
 
-                this.danoMonstro = danoMonstro
                 this.danoPlayer = danoPlayer
-                this.danoPlayerEspecial = danoPlayerEspecial
                 
                 // console.log("O Player deu ", danoPlayer, " De dano")
                 // console.log("O Monstro deu ", danoMonstro, " De dano")
                 
                 this.vidaMonstro -= danoPlayer;
-                this.vidaPlayer -= danoMonstro;
                 
-                this.logs.push(danoMonstro)
                 this.logs.push(danoPlayer)
 
             },       
