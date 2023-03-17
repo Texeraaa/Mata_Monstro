@@ -40,11 +40,14 @@
         </div>
         <div class="panel logs">
             <ul>
-                <li class="monster">
-                    <span >O monstro deu {{this.danoDoMonstro}} de dano</span>
+                <li class="monster" v-for="(monstro, index) in listaLogs[0]" :key="index">
+                    <span>O monstro deu {{listaLogs[0][index]}} de dano</span>
                 </li>
-                <li class="player">
-                    <span >O player deu {{this.danoPlayer}} de dano</span>
+                <li class="player" v-for="(player, index) in listaLogs[1]">
+                    <span>O player deu {{listaLogs[1][index]}} de dano</span>
+                </li>
+                <li class="player" v-for="(player, index) in listaLogs[2]">
+                    <span>O player curou {{listaLogs[2][index]}} de vida</span>
                 </li>
             </ul>
         </div>
